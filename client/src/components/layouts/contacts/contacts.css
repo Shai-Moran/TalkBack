@@ -1,0 +1,8 @@
+.contacts {
+    border: solid #000;
+    border-width: 3px;
+
+    height:600px;
+    width: 200px;
+    margin-right: 10px;
+}

@@ -1,0 +1,7 @@
+.chat {
+    border: solid #000;
+    border-width: 3px;
+
+    height:600px;
+    width: 600px;
+}
