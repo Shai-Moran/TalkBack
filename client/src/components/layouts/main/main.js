@@ -1,35 +1,29 @@
-import React, { Component, useState } from 'react';
-import Chat from '../chat/chats';
-import Contacts from '../contacts/contects';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router';
+import io from 'socket.io-client';
+import queryString from 'query-string';
+import Chat from '../Chats/Chats';
+import Contacts from '../Contacts/Contacts';
 
-import './main.css';
+import './Main.css';
 
-class Main extends Component {
-  constructor(props) {
-    super(props);
+const Main = () => {
+  const socket = io.connect('http://localhost:5000');
 
-    this.state = {
-      user: {
-        username: '',
-        contacts: []
-      }
-    };
+  const location = useLocation();
+  const userId = queryString.parse(location.search).id;
+  console.log(userId);
 
-    // this.onChangeUsername = this.onChangeUsername.bind(this);
-    // this.onChangePassword = this.onChangePassword.bind(this);
-  }
-  render() {
-    return (
-      <div class="container">
-        <div>
-          <Contacts />
-        </div>
-        <div>
-          <Chat />
-        </div>
+  return (
+    <div class="container">
+      <div>
+        <Contacts />
       </div>
-    );
-  }
-}
+      <div>
+        <Chat />
+      </div>
+    </div>
+  );
+};
 
 export default Main;

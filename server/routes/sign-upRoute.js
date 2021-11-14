@@ -4,8 +4,6 @@ let User = require('../models/user');
 const bcrypt = require('bcrypt');
 
 router.route('/').post(async (req, res) => {
-  console.log(req.body);
-
   const username = req.body.username;
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
   const contacts = req.body.contacts;
@@ -16,14 +14,14 @@ router.route('/').post(async (req, res) => {
     contacts: contacts
   });
 
-  User.findOne({username: newUser.username}).then((user) => {
-    if (user === null) {
+  User.findOne({ username: newUser.username }).then((user) => {
+    if (!user) {
       newUser
         .save()
-        .then(() => res.json('user added'))
+        .then(() => res.send(true))
         .catch((err) => res.status(400).json('Error: ' + err));
     } else {
-      res.send('username is taken');
+      res.send(false);
     }
   });
 });

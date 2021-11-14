@@ -7,11 +7,11 @@ router.route('/').post((req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) throw err;
     if (!user) {
-      res.sendStatus(313);
+      res.send(false);
     } else {
       req.logIn(user, (err) => {
         if (err) throw err;
-        res.sendStatus(200);
+        res.send(user);
       });
     }
   })(req, res, next);

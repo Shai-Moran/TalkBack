@@ -1,83 +1,65 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import './login.css';
+import './Login.css';
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
+const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    this.state = {
-      username: '',
-      password: ''
-    };
-
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-  }
-
-  onChangeUsername(e) {
-    this.setState({
-      username: e.target.value
-    });
-  }
-
-  onChangePassword(e) {
-    this.setState({
-      password: e.target.value
-    });
-  }
-
-  onSubmit = (e) => {
-    e.preventDefault();
-
+  const onSubmit = () => {
     const user = {
-      username: this.state.username,
-      password: this.state.password
+      username: username,
+      password: password
     };
 
     axios.post('http://localhost:5000/login', user).then((res) => {
-      if (res.status === 200) {
-        window.location = '/main';
-      } else {
-        console.log('oof');
+      console.log(res.data);
+      if (res.data !== false) {
+        window.location = `/main?id=${res.data._id}`;
+      }
+      if (!res.data) {
         document.getElementById('error').style.visibility = 'visible';
       }
     });
   };
 
-  render() {
-    return (
+  return (
+    <div>
+      <h1>Login</h1>
       <div>
-        <h1>Login</h1>
-        <div>
-          <h4 id="error">Username or password are incorrect</h4>
-        </div>
-        <form onSubmit={this.onSubmit}>
-          <div>
-            <label for="usernameTB">UserName:</label>
-            <input
-              type="text"
-              required
-              value={this.state.username}
-              onChange={this.onChangeUsername}
-            />
-          </div>
-          <div>
-            <label for="passwordTB">Password:</label>
-            <input
-              type="password"
-              required
-              value={this.state.password}
-              onChange={this.onChangePassword}
-            />
-          </div>
-          <div>
-            <input type="submit" value="Sign-in" />
-          </div>
-        </form>
+        <h4 id="error">Username or password are incorrect</h4>
       </div>
-    );
-  }
-}
+      <div>
+        <label for="usernameTB">UserName:</label>
+        <input
+          type="text"
+          required
+          placeholder="Enter Username..."
+          value={username}
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <label for="passwordTB">Password:</label>
+        <input
+          type="password"
+          required
+          placeholder="Enter Password..."
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <button type="submit" onClick={onSubmit}>
+          Sign-in
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default Login;
