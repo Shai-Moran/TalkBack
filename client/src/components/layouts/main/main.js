@@ -3,10 +3,11 @@ import { useLocation } from 'react-router';
 import axios from 'axios';
 import io from 'socket.io-client';
 import queryString from 'query-string';
-import Chat from '../chats/Chats';
+import Chat from '../Chats/Chats';
 import Contacts from '../contacts/Contacts';
 
-import './Main.css';
+import './main.css';
+import { Button } from 'semantic-ui-react';
 
 const socket = io.connect('http://localhost:5000');
 
@@ -32,19 +33,22 @@ const Main = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Welcome {user.username}</h1>
-      <button onClick={() => setShowContacts(!showContacts)}>
-        Show Contacts:
-      </button>
-      <div class="container">
-        {showContacts ? (
-          <div>
-            <Contacts socket={socket} user={user} onlineUsers={onlineUsers} />
+    <div id='main-page'>
+      <div className='main'>
+        <h1>Welcome {user.username}</h1>
+        <div className='main-content'>
+          <Button primary size='large' icon="users" className='show-cotacts' content="Show Contacts" onClick={() => setShowContacts(!showContacts)}>
+          </Button>
+          <div class="container">
+            {showContacts ? (
+              <div>
+                <Contacts socket={socket} user={user} onlineUsers={onlineUsers} />
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
-        ) : (
-          <></>
-        )}
+        </div>
       </div>
     </div>
   );

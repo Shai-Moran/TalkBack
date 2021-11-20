@@ -1,4 +1,6 @@
 .contacts {
     border: solid #000;
     border-width: 3px;
+    display: flex;
+    justify-content: space-between;
 }

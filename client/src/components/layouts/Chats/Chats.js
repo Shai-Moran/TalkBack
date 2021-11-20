@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
+import { Button, Input, Icon } from 'semantic-ui-react';
+
+import './Chats.css';
+
 
 const Chat = ({ user, contactId, socket }) => {
   const [currentMessage, setCurrentMessage] = useState('');
@@ -73,7 +77,8 @@ const Chat = ({ user, contactId, socket }) => {
         </ScrollToBottom>
       </div>
       <div className="chat-footer">
-        <input
+        <Input
+          icon={<Icon name='send' onClick={sendMessage} inverted circular link />}
           type="text"
           value={currentMessage}
           placeholder="Hey..."
@@ -84,7 +89,18 @@ const Chat = ({ user, contactId, socket }) => {
             event.key === 'Enter' && sendMessage();
           }}
         />
-        <button onClick={sendMessage}>&#9658;</button>
+        {/* <input
+          type="text"
+          value={currentMessage}
+          placeholder="Hey..."
+          onChange={(event) => {
+            setCurrentMessage(event.target.value);
+          }}
+          onKeyPress={(event) => {
+            event.key === 'Enter' && sendMessage();
+          }}
+        />
+        <button onClick={sendMessage}>&#9658;</button> */}
       </div>
     </div>
   );
