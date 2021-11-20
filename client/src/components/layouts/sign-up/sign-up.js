@@ -15,7 +15,8 @@ const SignUp = () => {
     const newUser = {
       username: username,
       password: password,
-      contacts: []
+      contacts: [],
+      friendRequests: []
     };
 
     if (password !== confirmPassword) {

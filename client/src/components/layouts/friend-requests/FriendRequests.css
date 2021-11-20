@@ -1,0 +1,12 @@
+.fr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.fr-btn {
+    height: fit-content;
+    width: fit-content;
+    background-color: greenyellow;
+    margin-left: 10px;
+}

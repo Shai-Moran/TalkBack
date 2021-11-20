@@ -13,6 +13,10 @@ const UserSchema = {
   contacts: {
     type: [],
     required: true
+  },
+  friendRequests: {
+    type: [],
+    required: true
   }
 };
 
