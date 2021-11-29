@@ -51,8 +51,8 @@
   }
   
   .chat-window {
-    width: 300px;
-    height: 420px;
+    display: flex;
+    flex-direction: column;
   }
   
   .chat-window p {
@@ -188,4 +188,8 @@
   }
   .hide {
     opacity: 0 !important;
+  }
+
+  .chat-footer > .ui.icon.input {
+    width: 100% !important;
   }

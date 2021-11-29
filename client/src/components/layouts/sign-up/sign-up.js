@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button, Input, Form } from 'semantic-ui-react';
 import axios from 'axios';
 import './Sign-up.css';
 
@@ -34,49 +35,57 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div id="sign-up">
       <h1>Sign-up</h1>
-      <h4 id="error">Username is already in use</h4>
-      <div>
-        <label for="usernameTB">UserName:</label>
-        <input
-          type="text"
-          required
-          placeholder="Enter new username..."
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-      </div>
-      <div>
-        <label for="passwordTB">Password:</label>
-        <input
-          type="password"
-          required
-          placeholder="Enter new Password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-      </div>
-      <div>
-        <label for="confirmPasswordTB">Confirm Password:</label>
-        <input
-          id="cpInput"
-          type="password"
-          required
-          placeholder="confirm password..."
-          value={confirmPassword}
-          onChange={(e) => {
-            setConfirmPassword(e.target.value);
-          }}
-        />
-      </div>
-      <div>
-        <button onClick={onSubmit}>Sign Up!</button>
-      </div>
+      <Form>
+        <h4 id="error">Username is already in use</h4>
+        <Form.Field>
+          <div>
+            <label for="usernameTB">UserName:</label>
+            <Input
+              type="text"
+              required
+              placeholder="Enter new username..."
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+          </div>
+        </Form.Field>
+        <Form.Field>
+          <div>
+            <label for="passwordTB">Password:</label>
+            <Input
+              type="password"
+              required
+              placeholder="Enter new Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
+        </Form.Field>
+        <Form.Field>
+          <div>
+            <label for="confirmPasswordTB">Confirm Password:</label>
+            <Input
+              id="cpInput"
+              type="password"
+              required
+              placeholder="confirm password..."
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
+            />
+          </div>
+        </Form.Field>
+        <div>
+          <Button onClick={onSubmit}>Sign Up!</Button>
+        </div>
+      </Form>
     </div>
   );
 };

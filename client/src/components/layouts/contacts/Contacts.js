@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import FriendRequests from '../friend-requests/FriendRequests';
 import Chat from '../chats/Chats';
 import axios from 'axios';
-import './Contacts.css';
+import './contacts.css';
+import { Segment, List, Image } from 'semantic-ui-react';
+
 
 const Contacts = ({ socket, user, onlineUsers }) => {
   const contacts = user.contacts;
@@ -32,33 +34,36 @@ const Contacts = ({ socket, user, onlineUsers }) => {
   }, []);
 
   return (
-    <div class="contacts">
-      <h1>Contacts</h1>
-      <h2>Online:</h2>
-      {console.log(online)}
-      {online.map((contact) => {
-        return (
-          <p
-            onClick={() => {
-              setContactId(contact._id);
-              setShowChat(!showChat);
-            }}
-          >
-            {contact.username}
-          </p>
-        );
-      })}
-      <h2>Offline:</h2>
-      {offline.map((contact) => {
-        return <p>{contact.username}</p>;
-      })}
-      <FriendRequests user={user} />
-      {showChat ? (
-        <Chat className="chat" user={user} contactId={contactId} socket={socket} />
-      ) : (
-        <></>
-      )}
-    </div>
+    <Segment className="contacts">
+      <div>
+        <h1>Contacts</h1>
+        <h2>Online:</h2>
+        {console.log(online)}
+        {online.map((contact) => {
+          return (
+            <List.Item>
+              <Image avatar src={`https://i.pravatar.cc/150?u=${contact._id}`} />
+              <List.Header onClick={() => {
+                setContactId(contact._id);
+                setShowChat(!showChat);
+              }} as='a'>{contact.username}</List.Header>
+            </List.Item>
+          );
+        })}
+        <h2>Offline:</h2>
+        {offline.map((contact) => {
+          return <p>{contact.username}</p>;
+        })}
+        <FriendRequests user={user} />
+      </div>
+      <div>
+        {showChat ? (
+          <Chat className="chat" user={user} contactId={contactId} socket={socket} />
+        ) : (
+          <></>
+        )}
+      </div>
+    </Segment>
   );
 };
 

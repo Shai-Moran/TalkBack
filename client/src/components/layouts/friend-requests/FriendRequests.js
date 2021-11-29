@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axois from 'axios';
+import { Button, Input } from 'semantic-ui-react';
+
 
 import './FriendRequests.css';
 
@@ -55,7 +57,7 @@ const FriendRequests = ({ user }) => {
     <div>
       <div className="friend-req">
         <h1>Friend requests</h1>
-        <button onClick={() => setShowFR(!showFR)}>Show Friend requests</button>
+        <Button onClick={() => setShowFR(!showFR)}>Show Friend requests</Button>
         {showFR ? (
           <div>
             {console.log(friendRequestsNames.length)}
@@ -63,9 +65,9 @@ const FriendRequests = ({ user }) => {
               return (
                 <div className="fr" id={'fr-' + name}>
                   <h5>{name}</h5>
-                  <button className="fr-btn" onClick={() => exceptReq(name)}>
+                  <Button className="fr-btn" onClick={() => exceptReq(name)}>
                     Except
-                  </button>
+                  </Button>
                 </div>
               );
             })}
@@ -74,14 +76,14 @@ const FriendRequests = ({ user }) => {
           <></>
         )}
         <h4>Send Friend Request:</h4>
-        <input
+        <Input
           type="text"
           onChange={(e) => {
             setNewFR(e.target.value);
           }}
           value={newFR}
         />
-        <button onClick={sendFR}>Send</button>
+        <Button onClick={sendFR}>Send</Button>
       </div>
     </div>
   );
