@@ -3,7 +3,6 @@ import { useLocation } from 'react-router';
 import axios from 'axios';
 import io from 'socket.io-client';
 import queryString from 'query-string';
-import Chat from '../Chats/Chats';
 import Contacts from '../contacts/Contacts';
 
 import './main.css';
@@ -33,16 +32,26 @@ const Main = () => {
   }, []);
 
   return (
-    <div id='main-page'>
-      <div className='main'>
+    <div id="main-page">
+      <div className="main">
         <h1>Welcome {user.username}</h1>
-        <div className='main-content'>
-          <Button primary size='large' icon="users" className='show-cotacts' content="Show Contacts" onClick={() => setShowContacts(!showContacts)}>
-          </Button>
+        <div className="main-content">
+          <Button
+            primary
+            size="large"
+            icon="users"
+            className="show-cotacts"
+            content="Show Contacts"
+            onClick={() => setShowContacts(!showContacts)}
+          ></Button>
           <div class="container">
             {showContacts ? (
               <div>
-                <Contacts socket={socket} user={user} onlineUsers={onlineUsers} />
+                <Contacts
+                  socket={socket}
+                  user={user}
+                  onlineUsers={onlineUsers}
+                />
               </div>
             ) : (
               <></>

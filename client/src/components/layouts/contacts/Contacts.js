@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FriendRequests from '../friend-requests/FriendRequests';
-import Chat from '../Chats/Chats';
+import Chat from '../chats/Chats';
 import axios from 'axios';
 import './contacts.css';
 import { Segment, List, Image } from 'semantic-ui-react';

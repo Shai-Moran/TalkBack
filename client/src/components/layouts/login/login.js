@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Input, Header, Form } from 'semantic-ui-react'
+import { Button, Input, Header, Form } from 'semantic-ui-react';
 import axios from 'axios';
 import './login.css';
 
@@ -25,7 +25,7 @@ const Login = () => {
   };
 
   return (
-    <div id='login'>
+    <div id="login">
       <h1>Login</h1>
       <Form>
         <Form.Field>
@@ -58,9 +58,9 @@ const Login = () => {
         </Button>
       </Form>
       <div>
-        <Header as="h1" id="error">Username or password are incorrect</Header>
-
-
+        <Header as="h1" id="error">
+          Username or password are incorrect
+        </Header>
       </div>
     </div>
   );
